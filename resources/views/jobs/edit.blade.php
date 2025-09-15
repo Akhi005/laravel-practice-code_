@@ -4,7 +4,7 @@
     </x-slot:heading>
 
     <div>
-        <form method="POST" action="/jobs">
+        <form method="PATCH" action="/jobs/{{$job->id}}">
             @csrf
             <div class="space-y-12 bg-gray-400">
                 <div class="border-b border-white/10 pb-12">
@@ -38,10 +38,14 @@
             </div>
 
             <div class="mt-6 flex items-center justify-end gap-x-6">
+                <a form="delete-form" href="/jobs/{{ $job->id }}" type="button" class="bg-red-500 p-2 rounded font-semibold text-red-500">Delete</a>
                 <a href="/jobs/{{ $job->id }}" type="button" class="bg-red-500 p-2 rounded font-semibold text-white">Cancel</a>
                 <a href="/jobs/{{ $job->id }}" type="submit" class="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Save</a>
             </div>
         </form>
-
+        <form method="DELETE" action="/jobs/{{$job->id}}" id="delete-form" class="hidden">
+            @csrf 
+                         
+        </form>
     </div>
 </x-layout>
